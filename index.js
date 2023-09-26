@@ -219,8 +219,11 @@ console.log(OrtalamaGolSayisi(Finaller(fifaData)));
 	İpucu: "takım kısaltmaları" (team initials) için datada araştırma yapın!
 İpucu: `.reduce` Kullanın*/
 
-function UlkelerinKazanmaSayilari(/* kodlar buraya */) {
-  /* kodlar buraya */
+function UlkelerinKazanmaSayilari(data,teamInials) {
+  let sonuc = {};
+  for (let i=0; i< data.length;i++) {
+    if (sonuc[data[i]])
+  }
 }
 
 /*  BONUS 2:  
