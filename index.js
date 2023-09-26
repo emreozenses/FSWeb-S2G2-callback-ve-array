@@ -113,13 +113,11 @@ function Finaller(arr) {
 	*/
 
 function Yillar(arr, Finaller) {
-  const years = [];
-  let finals = Finaller(arr);
-  for (let i = 0; i < finals.length; i++) {
-    years.push(finals[i].Year);
-  }
-  console.log(years);
-  return years;
+  const finals = Finaller(arr);
+  const sonuc = finals.map((final) => {
+    return final.Year;
+  });
+  return sonuc;
 }
 console.log(Yillar(fifaData, Finaller));
 
@@ -131,8 +129,8 @@ console.log(Yillar(fifaData, Finaller));
 	💡 İPUCU: Beraberlikler(ties) için şimdilik endişelenmeyin (Detaylı bilgi için README dosyasına bakabilirsiniz.)
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */
 
-function Kazananlar(arr,Finaller) {
-  const kazananlar = [];
+function Kazananlar(arr, Finaller) {
+  /*  const kazananlar = [];
   const finals = Finaller(arr);
  
     for (let i = 0; i < finals.length; i++) {
@@ -148,9 +146,20 @@ function Kazananlar(arr,Finaller) {
         kazananlar.push(finals[i]["Win conditions"]);
       }
     }
-    return kazananlar;
-  };
-console.log(Kazananlar(fifaData,Finaller));
+    return kazananlar;*/
+  const finals = Finaller(arr);
+  const winners = finals.map((final) => {
+    if (final["Home Team Goals"] > final["Away Team Goals"]) {
+      return final["Home Team Name"];
+    } else if (final["Home Team Goals"] < final["Away Team Goals"]) {
+      return final["Away Team Name"];
+    } else if (final["Home Team Goals"] == final["Away Team Goals"]) {
+      return final["Win conditions"];
+    }
+  });
+  return winners;
+}
+console.log(Kazananlar(fifaData, Finaller));
 
 /*  Görev 5: 
 	Bir higher-order fonksiyonu olan YillaraGoreKazananlar isimli fonksiyona aşağıdakileri uygulayın:
@@ -163,9 +172,18 @@ console.log(Kazananlar(fifaData,Finaller));
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(/* kodlar buraya */) {
-  /* kodlar buraya */
+function YillaraGoreKazananlar(arr,Finaller,Yillar,Kazananlar) {
+  const years = Yillar (arr,Finaller);
+  const winners = Kazananlar(arr,Finaller);
+  let mesaj = [];
+  for (let i=0; i < years.length; i++) {
+    mesaj.push(`${years[i]} yılında, ${winners[i]} dünya kupasını kazandı!`);
+  
+  }
+  return mesaj;  
+
 }
+console.log(YillaraGoreKazananlar(fifaData,Finaller,Yillar,Kazananlar));
 
 /*  Görev 6: 
 	Bir higher order fonksiyonu olan `OrtalamaGolSayisi` isimli fonksiyona aşağıdakileri uygulayın: 
