@@ -199,9 +199,17 @@ console.log(YillaraGoreKazananlar(fifaData,Finaller,Yillar,Kazananlar));
 	
 */
 
-function OrtalamaGolSayisi(/* kodlar buraya */) {
-  /* kodlar buraya */
+function OrtalamaGolSayisi(finalData) {
+  const finals = finalData;
+  const macSayisi = finals.length;
+  const goals = finals.reduce((total,mac) => {
+    return total + mac["Home Team Goals"] + mac["Away Team Goals"];
+  },0);
+  const Avg = goals/macSayisi;
+  return Avg.toFixed(2);
 }
+console.log(OrtalamaGolSayisi(Finaller(fifaData)));
+
 
 /// EKSTRA ÇALIŞMALAR ///
 
