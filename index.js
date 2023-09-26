@@ -114,15 +114,14 @@ function Finaller(arr) {
 
 function Yillar(arr, Finaller) {
   const years = [];
-  let final_Year = "";
-  for (let i = 0; i < arr.length; i++) {
-    final_Year = Finaller(arr)[i].Year;
-    years.push(final_Year);
+  let finals = Finaller(arr);
+  for (let i = 0; i < finals.length; i++) {
+    years.push(finals[i].Year);
   }
   console.log(years);
   return years;
 }
-Yillar(fifaData, Finaller);
+console.log(Yillar(fifaData, Finaller));
 
 /*  Görev 4: 
 	Bir higher-order fonksiyonunu olan Kazananlar isimli fonksiyona aşağıdakileri uygulayın:  
