@@ -131,9 +131,26 @@ console.log(Yillar(fifaData, Finaller));
 	💡 İPUCU: Beraberlikler(ties) için şimdilik endişelenmeyin (Detaylı bilgi için README dosyasına bakabilirsiniz.)
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */
 
-function Kazananlar(/* kodlar buraya */) {
-  /* kodlar buraya */
-}
+function Kazananlar(arr,Finaller) {
+  const kazananlar = [];
+  const finals = Finaller(arr);
+ 
+    for (let i = 0; i < finals.length; i++) {
+      if(finals[i]["Home Team Goals"] > finals[i]["Away Team Goals"]) {
+        kazananlar.push(finals[i]["Home Team Name"]);
+      } 
+      else if (finals[i]["Home Team Goals"] < finals[i]["Away Team Goals"]) {
+        kazananlar.push(finals[i]["Away Team Name"]);
+      } 
+      else if (
+                finals[i]["Home Team Goals"] == finals[i]["Away Team Goals"]
+      ) {
+        kazananlar.push(finals[i]["Win conditions"]);
+      }
+    }
+    return kazananlar;
+  };
+console.log(Kazananlar(fifaData,Finaller));
 
 /*  Görev 5: 
 	Bir higher-order fonksiyonu olan YillaraGoreKazananlar isimli fonksiyona aşağıdakileri uygulayın:
